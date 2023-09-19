@@ -1,0 +1,7 @@
+semver (0.3.0-1) UNRELEASED; urgency=medium
+
+  * Initial release.
+
+  closes: #1052215
+
+ -- Chen Linxuan <me@black-desk.cn>  Mon, 18 Sep 2023 18:12:09 +0800

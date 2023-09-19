@@ -1,0 +1,16 @@
+Source: semver
+Maintainer: Chen Linxuan <me@black-desk.cn>
+Section: devel
+Priority: optional
+Standards-Version: 4.6.2
+Build-Depends: catch2, cmake, debhelper-compat (= 13)
+
+Package: libsemver-dev
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: header only c++ semver library
+ Semantic Versioning for modern C++
+ .
+ C++ library compare and manipulate versions are available as extensions to the
+ <major>.<minor>.<patch>-<prerelease_type>.<prerelease_number> format complying
+ with Semantic Versioning 2.0.0

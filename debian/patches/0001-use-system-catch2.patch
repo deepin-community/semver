@@ -1,0 +1,45 @@
+From: black-desk <me@black-desk.cn>
+Date: Tue, 19 Sep 2023 10:04:09 +0800
+Subject: use system catch2
+
+---
+ test/CMakeLists.txt | 5 +++--
+ test/test.cpp       | 2 +-
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
+index 8be3ef8..f314a8e 100644
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -21,8 +21,7 @@ endif()
+ function(make_test target std)
+     add_executable(${target} ${SOURCES})
+     target_compile_options(${target} PRIVATE ${OPTIONS})
+-    target_include_directories(${target} PRIVATE 3rdparty/Catch2)
+-    target_link_libraries(${target} PRIVATE ${CMAKE_PROJECT_NAME})
++    target_link_libraries(${target} PRIVATE ${CMAKE_PROJECT_NAME} Catch2::Catch2WithMain)
+     set_target_properties(${target} PROPERTIES CXX_EXTENSIONS OFF)
+     if(std)
+         if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+@@ -34,6 +33,8 @@ function(make_test target std)
+     add_test(NAME ${target} COMMAND ${target})
+ endfunction()
+ 
++find_package(Catch2 REQUIRED)
++
+ make_test(${CMAKE_PROJECT_NAME}-cpp17.t c++17)
+ 
+ if(HAS_CPP20_FLAG)
+diff --git a/test/test.cpp b/test/test.cpp
+index 639f5e3..1bc1edb 100644
+--- a/test/test.cpp
++++ b/test/test.cpp
+@@ -21,7 +21,7 @@
+ // SOFTWARE.
+ 
+ #define CATCH_CONFIG_MAIN
+-#include <catch.hpp>
++#include <catch2/catch.hpp>
+ 
+ #include <semver.hpp>
+ 
