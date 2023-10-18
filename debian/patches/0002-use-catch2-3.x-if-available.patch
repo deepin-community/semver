@@ -3,23 +3,22 @@ Date: Wed, 18 Oct 2023 13:22:39 +0800
 Subject: use catch2 3.x if available
 
 ---
- test/test.cpp | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ test/test.cpp | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/test/test.cpp b/test/test.cpp
-index 1bc1edb..6630109 100644
+index 1bc1edb..b02464b 100644
 --- a/test/test.cpp
 +++ b/test/test.cpp
 @@ -21,7 +21,12 @@
  // SOFTWARE.
  
  #define CATCH_CONFIG_MAIN
--#include <catch2/catch.hpp>
 +
 +#if __has_include(<catch2/catch_all.hpp>)
 +#include <catch2/catch_all.hpp>
 +#else
-+#include <catch2/catch2.hpp>
+ #include <catch2/catch.hpp>
 +#endif
  
  #include <semver.hpp>
